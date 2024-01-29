@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ blog_post.title }}</title>
+</head>
+<body>
+
+{% for blog_post in posts %}
+    {% with categories=blog_post.category.count %}
+
+    <a href="{% url 'blog-post' blog_post.slug  %}">
+    <h2 >{{ forloop.counter }} - {{ blog_post.title }} - {{categories}}</h2>
+    </a>
+    <strong> Cet article est présent dans {{ categories }} catégories.</strong>
+
+    {% endwith %}
+{% endfor %}
+</body>
+</html>
