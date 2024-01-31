@@ -24,6 +24,6 @@ urlpatterns = [
     path('',home, name="home"),
     path('blog/', blog_posts, name="blog-index"),
     path('blog/<str:slug>', blog_post, name="blog-post"),
-    path('admin/', admin.site.urls)
+    path('bakus-admin/', admin.site.urls)
 
 ]

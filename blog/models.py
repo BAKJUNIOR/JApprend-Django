@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -18,3 +19,28 @@ class BlogPost(models.Model):
     date = models.DateField(blank=True, null=True)
     content = models.TextField()
     description = models.TextField()
+
+    class Meta:
+        verbose_name = "Article"
+
+    def __str__(self):
+        return self.title
+
+    def number_of_words(self):
+        return len(self.description.split())
+
+    def get_absolute_url(self):
+        return reverse("blog-post", kwargs={"slug": self.slug})
+
+
+
+
+
+
+
+
+
+
+
+
+

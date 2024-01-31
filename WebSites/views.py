@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
+from django.urls import reverse
 
 from blog.models import BlogPost
 
@@ -8,18 +9,21 @@ from blog.models import BlogPost
 # Create your views here.
 
 def home(request):
-    return HttpResponse("Hello, world. You're at the")
+    return HttpResponse("Hello, world. You're at the my site web")
+
 
 @login_required()
-#@user_passes_test(lambda u: u.username == 'bak')
+# @user_passes_test(lambda u: u.username == 'bak')
 def blog_posts(request):
     posts = BlogPost.objects.all()
-    return render(request, 'blog/index.html', {'posts': posts})
+    return render(request, 'blog/index.html', context={'posts': posts})
 
     """
     blog_post = get_object_or_404(BlogPost, pk=2)
     return HttpResponse(blog_post.content)
     """
+
+
 """
   try:
         blog_post = BlogPost.objects.get(pk=5)
@@ -30,5 +34,11 @@ def blog_posts(request):
 
 
 def blog_post(request, slug):
-    post = BlogPost.objects.get(slug=slug)
-    return render(request, 'blog/post.html', {'post': post})
+    try:
+        post = BlogPost.objects.get(slug=slug)
+        return render(request, 'blog/post.html', context={'post': post})
+    except BlogPost.DoesNotExist:
+        # Si aucun objet BlogPost correspondant n'est trouvé, renvoyer une autre page HTML error
+        return render(request, 'blog/error404.html')
+
+

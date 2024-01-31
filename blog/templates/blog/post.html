@@ -1,15 +1,15 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ blog_post.title }}</title>
-</head>
-<body>
+{% extends 'blog/base.html' %}
+
+ {% block title %} <title>Détail article</title> {% endblock %}
+
+ {% block content %}
 <a href="{% url 'blog-index' %}">Retour Home</a>
-<h2>{{ post.title }}</h2>
+
+<h1>{{ post.title }}</h1>
+<h2>{{ post.number_of_words }} mots</h2>
 <h4>{{ post.description }}</h4>
-</body>
-</html>
+
+ {% endblock %}
+
+
+
