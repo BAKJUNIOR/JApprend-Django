@@ -17,13 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from WebSites.views import blog_post, blog_posts, home
+from WebSites.views import blog_post, blog_posts, blogForm
 
 urlpatterns = [
 
-    path('',home, name="home"),
-    path('blog/', blog_posts, name="blog-index"),
+    path('', blog_posts, name="blog-index"),
     path('blog/<str:slug>', blog_post, name="blog-post"),
-    path('bakus-admin/', admin.site.urls)
+    path('bakus-admin/', admin.site.urls),
+    path('article/', blogForm, name=" blogForm-index"),
 
 ]

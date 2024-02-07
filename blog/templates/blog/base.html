@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,14 +6,74 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% block title %}{% endblock %}
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body style="background-color: SteelBlue">
+    {% block title %}{% endblock %}
+<body>
 
-<u>
-    <h1 style="text-align: center">Bienvenu(e) sur mon site</h1>
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-secondary">
+    <!-- Container wrapper -->
+    <div class="container">
+        <!-- Navbar brand -->
+        <a class="navbar-brand me-2" href="">
+            <img
+                    src="logo.jpg"
+                    height="16"
+                    alt=" "
 
-</u>
+            />
+        </a>
+
+        <!-- Toggle button -->
+        <button
+                data-mdb-collapse-init
+                class="navbar-toggler"
+                type="button"
+                data-mdb-target="#navbarButtonsExample"
+                aria-controls="navbarButtonsExample"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Collapsible wrapper -->
+        <div class="collapse navbar-collapse" id="navbarButtonsExample">
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" style="color: white ; font-size: 20px" ><strong>Dashboard</strong> </a>
+                </li>
+            </ul>
+            <!-- Left links -->
+
+            <div class="d-flex align-items-center">
+                <button data-mdb-ripple-init type="button" class="btn btn-warning px-3 me-2">
+                   <strong>Login</strong>
+                </button>
+                <button data-mdb-ripple-init type="button" class="btn btn-primary me-3">
+                    <strong>Inscription gratuite</strong>
+                </button>
+                <a
+                        data-mdb-ripple-init
+                        class="btn btn-dark px-3"
+                        href="https://github.com/BAKJUNIOR"
+                        role="button"
+                ><i class="fab fa-github"></i
+                ></a>
+            </div>
+        </div>
+        <!-- Collapsible wrapper -->
+    </div>
+    <!-- Container wrapper -->
+</nav>
+<!-- Navbar -->
+
+
 
  {% block content %}{% endblock %}
 

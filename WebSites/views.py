@@ -1,15 +1,14 @@
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
+from WebSites.form import BlogForm
 from blog.models import BlogPost
 
 
 # Create your views here.
 
-def home(request):
-    return HttpResponse("Hello, world. You're at the my site web")
 
 
 @login_required()
@@ -42,3 +41,13 @@ def blog_post(request, slug):
         return render(request, 'blog/error404.html')
 
 
+def blogForm(request):
+    if request.method == 'POST':
+        form = BlogForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponse("Blog post saved")
+    else:
+        form = BlogForm()
+
+    return render(request, 'blog/blogForm.html', context={'form': form})
